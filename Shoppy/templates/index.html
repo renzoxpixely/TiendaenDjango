@@ -1,23 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     {% load staticfiles %}
     <meta charset="UTF-8">
-    <title>Hello World</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <title>Tienda</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
-    <h1 style="color:red">
-        Hola
-    </h1>
-    <ul>
+    <header>
+        <img id="banner" src="media/banner.png">
+    </header>
+
+    <nav>
+        
+        <button role="link" onclick="window.location='{% url 'products.views.new_product' %}'">Agregar productos</button>
+        <button role="link" onclick="window.location='http://es.stackoverflow.com'">Ingresar al admin</button>
+        <button role="link" onclick="window.location='http://es.stackoverflow.com'">boton3</button>
+    </nav>
+
+
+
+    <section>
+    <ol id="lista3">
         {% for pr in product %}
             <li>
-                {{ pr.name }} | 
-                {{ pr.description }}
-                <img src="{{ pr.image.url }}">
+                <a  href="{% url 'products.views.product_detail' pk=pr.pk %}">
+                    {{ pr.name }} 
+                </a>
+
+                <p>{{ pr.description }}</p>
+                <img src="{{ pr.image.url }}" alt="">
             </li>
         {% endfor %}
-    </ul>
+    </ol>
+    </section>
+
+
+    <aside>
+        <h2>Proyectos</h2>
+    </aside>
+
+    <footer>
+        <h2>Visita mi blog</h2>
+                <button role="link" onclick="window.location='http://encodigosycodigos.blogspot.com/'">Ir a Blog</button>
+    </footer>
+   
 </body>
 </html>
